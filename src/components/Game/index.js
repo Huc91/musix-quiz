@@ -8,7 +8,7 @@ export const Game = () => {
 
       const getUser = async () => {
           try {
-              const rawData = await fetch( CORSBypass+apiBaseUrl);
+              const rawData = await fetch( apiBaseUrl);
               const data = await rawData.json();
               console.log(data);
           } catch(err) {
