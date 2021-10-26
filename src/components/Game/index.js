@@ -1,8 +1,8 @@
-import React,  { useState, useEffect } from 'react';
+import React,  { useEffect } from 'react';
 
 export const Game = () => {
 
-    const CORSBypass = 'https://cors-anywhere.herokuapp.com/';
+    // const CORSBypass = 'https://cors-anywhere.herokuapp.com/';
 
     const apiBaseUrl = 'https://api.musixmatch.com/ws/1.1/';
 

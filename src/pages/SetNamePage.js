@@ -19,6 +19,7 @@ const SetNamePage = () => {
                 onChange={(e) => setName(e.target.value)}
             />
             <MainButton cta="PLAY" />
+            { name }
         </Page>
     );
 };
