@@ -2,14 +2,19 @@ import React from 'react';
 
 import Page from "./Page";
 
+// Components
+import { MainButton } from '../components/MainButton';
+
 const HomePage = () => {
 
     return (
         <Page>
-            <h1>Hello world!</h1>
+            <h1>WHO SINGS</h1>
             <p>
-                I am a HomePage!
+                the quiz game 
+                for lyrics enthusiasts 
             </p>
+            <MainButton cta="START" />
         </Page>
     );
 };

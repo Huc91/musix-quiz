@@ -1,0 +1,13 @@
+.container {
+    background-color: #FFEB3B;
+    font-size: 1rem;
+    padding: 1rem;
+    width: 100%;
+    cursor: pointer;
+    transition: all .2s ease-in;
+    will-change: transform;
+}
+
+.container:hover {
+    background-color: #FFFF72;
+}

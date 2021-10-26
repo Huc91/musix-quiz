@@ -1,15 +1,16 @@
-import React from 'react';
-
 import Page from "./Page";
+
+// Components
+import { QuizCard } from '../components/QuizCard';
+import { Game } from '../components/Game';
+
 
 const QuizPage = () => {
 
     return (
         <Page>
-            <h1>The quiz</h1>
-            <p>
-                quizzzz
-            </p>
+            <Game />
+            <QuizCard/>
         </Page>
     );
 };
