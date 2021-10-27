@@ -2,13 +2,12 @@ import React,  { useEffect } from 'react';
 
 export const Game = () => {
 
-    const CORSBypass = 'https://cors-anywhere.herokuapp.com/';
-
+    const CORSProxy = window.location.hostname === "localhost" ? "https://cors-anywhere.herokuapp.com/" : "/cors-proxy/";
     const apiBaseUrl = 'https://api.musixmatch.com/ws/1.1/';
 
       const getUser = async () => {
           try {
-              const rawData = await fetch( CORSBypass+apiBaseUrl);
+              const rawData = await fetch( CORSProxy+apiBaseUrl);
               const data = await rawData.json();
               console.log(data);
           } catch(err) {
@@ -20,7 +19,7 @@ export const Game = () => {
 
         getUser();
 
-    }, []);
+    });
 
     return (
         <main>
