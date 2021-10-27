@@ -10,7 +10,7 @@ export const Game = () => {
 
       const getUser = async () => {
           try {
-              const rawData = await fetch( CORSProxy+apiBaseUrl+search);
+              const rawData = await fetch( CORSProxy+search);
               const data = await rawData.json();
               console.log(data);
           } catch(err) {
