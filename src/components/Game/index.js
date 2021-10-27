@@ -2,7 +2,7 @@ import React,  { useEffect } from 'react';
 
 export const Game = () => {
 
-    const CORSProxy = window.location.hostname === "localhost" ? "https://cors-anywhere.herokuapp.com/" : "/cors-proxy/";
+    const CORSProxy = window.location.hostname === "localhost" ? "https://cors-anywhere.herokuapp.com/" : "/api/";
     const apiBaseUrl = 'https://api.musixmatch.com/ws/1.1/',
         trackTitle = 'goosebumps',
         KEY = '71c04f50d5a58a93785ea8ec895155d0',
