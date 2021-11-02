@@ -54,6 +54,12 @@ export const QuizCard = ({ question, checkAnswer }) => {
 
             const lines = lyrics_body.split('\n');
             console.log(lines);
+            const lineIndex = getRandomIntInRange(0, lines.length - 4);
+            const quote = `
+                ${lines[lineIndex]}
+                ${lines[lineIndex + 1]}
+            `
+            console.log(quote);
             
         } catch (err) {
             console.log(err);
