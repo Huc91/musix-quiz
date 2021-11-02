@@ -1,0 +1,18 @@
+.container {
+    background-color: #ffffff;
+    color: #212121;
+    font-size: 1rem;
+    padding: 1rem;
+    width: 100%;
+    cursor: pointer;
+    transition: all .2s ease-in;
+    will-change: transform;
+}
+
+.success {
+    background-color: #c2ffaa;
+}
+
+.danger {
+    background-color: #ffaaaa;
+}

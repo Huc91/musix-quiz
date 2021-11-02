@@ -1,4 +1,7 @@
-import React,  { useEffect } from 'react';
+import React from 'react';
+
+// Components
+import { QuizCard } from '../QuizCard';
 
 export const Game = () => {
 
@@ -12,8 +15,6 @@ export const Game = () => {
         'Lil Peep', 'XXXTENTACION', 'Kanye West', 'Joey Purp', 'Kill The Vultures',
         'Pusha T', 'Vince Staples'
     ]
-
-    const numberOfQuestions = 6;
 
     const getRandomIntInRange = (min, max) => {
         return Math.floor(Math.random() * (max - min) + min);
@@ -29,20 +30,22 @@ export const Game = () => {
         let pickedIndexes = {};
         let selectedArtists = [];
         const questionArtists = {};
-        let rightAnswer = getRandomIntInRange(0, numberOfArtists);
         //continue picking until n are taken, avoid multiple picks
         while (q < numberOfQuestions) {
             const randomIndex = getRandomIntInRange(0, artists.length);
-            if (!pickedIndexes.randomIndex) {
+            if (!pickedIndexes.hasOwnProperty(randomIndex)) {
+                pickedIndexes[randomIndex] = true;
                 selectedArtists.push(artists[randomIndex]);
                 i++
                 if (i === numberOfArtists) {
-                    questionArtists[q] = selectedArtists
+                    questionArtists[q] = {
+                        selectedArtists,
+                        correctAnswer: getRandomIntInRange(0, numberOfArtists)
+                    }
                     //reset
                     i = 0;
                     pickedIndexes = {};
                     selectedArtists = [];
-                    rightAnswer = getRandomIntInRange(0, numberOfArtists);
                     //go to the next question generation
                     q++
                 }
@@ -51,54 +54,18 @@ export const Game = () => {
         return questionArtists;
     }
 
-    console.log(pickArtists(6, 3));
-     
-
-    const CORSProxy = window.location.hostname === "localhost" ? "https://cors-anywhere.herokuapp.com/" : "";
-    const apiBaseUrl = 'https://api.musixmatch.com/ws/1.1/',
-        KEY = '71c04f50d5a58a93785ea8ec895155d0',
-        search = `track.search?q_artist=frank ocean&page_size=30&page=1&s_track_rating=desc&f_has_lyrics=1&apikey=${KEY}`
-
-      const getUser = async () => {
-          try {
-              const rawData = await fetch( CORSProxy+apiBaseUrl+search);
-              const data = await rawData.json();
-              console.log(data);
-          } catch(err) {
-            console.log(err);
-            }
-        }
-
-    /*      "music_genre": {
-            "music_genre_id": 1073,
-            "music_genre_parent_id": 18,
-            "music_genre_name": "Hip-Hop",
-            "music_genre_name_extended": "Hip Hop/Rap / Hip-Hop",
-            "music_genre_vanity": "Hip-Hop-Rap-Hip-Hop"
-          }
-    */
-    /*
-            {
-          "music_genre": {
-            "music_genre_id": 1075,
-            "music_genre_parent_id": 18,
-            "music_genre_name": "Old School Rap",
-            "music_genre_name_extended": "Hip Hop/Rap / Old School Rap",
-            "music_genre_vanity": "Hip-Hop-Rap-Old-School-Rap"
-          }
-        },
-    */
+    const questions = pickArtists(100, 3);
     
-    
-    useEffect(() => {
 
-        getUser();
+    const currentQuestion = 2;
 
-    });
+    const checkAnswer = (index) => {
+        console.log(index);
+    };
 
     return (
         <main>
-            game holder
+            <QuizCard question={questions[currentQuestion]} checkAnswer={checkAnswer}></QuizCard>
         </main>
     );
 };
