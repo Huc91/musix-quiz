@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Components
 import { QuizCard } from '../QuizCard';
 
 export const Game = () => {
+
+    const numberOfQuestions = 6;
 
     const artists = [
         'Kendrick Lamar', 'Wu-Tang Clan', 'Lil Uzi Vert',
@@ -54,18 +56,39 @@ export const Game = () => {
         return questionArtists;
     }
 
-    const questions = pickArtists(100, 3);
-    
+    const questions = pickArtists(numberOfQuestions, 3);
 
-    const currentQuestion = 2;
+    const [isGameEnd, setGameEnd] = useState(false);
+    const [currentQuestion, setCurrentQuestion] = useState(0);
 
     const checkAnswer = (index) => {
-        console.log(index);
+        const answer = questions[currentQuestion].correctAnswer
+        if (index === answer) {
+            console.log(currentQuestion < numberOfQuestions);
+            if (currentQuestion < numberOfQuestions - 1) {
+                setTimeout(() => { setCurrentQuestion(currentQuestion + 1) }, 1000);
+            } else {
+                setTimeout(() => { setGameEnd(true); }, 1000);
+            }
+        } else {
+           setTimeout(() => { setGameEnd(true); }, 1000);
+        }
     };
 
+    const hasWin = () => {
+        if (currentQuestion < numberOfQuestions)
+            return false;
+        
+        return true;
+    }
     return (
         <main>
-            <QuizCard question={questions[currentQuestion]} checkAnswer={checkAnswer}></QuizCard>
+            {isGameEnd ?
+                <span>{ hasWin() ? 'You won' : 'You lost' }</span>
+                :
+                <QuizCard question={questions[currentQuestion]} checkAnswer={checkAnswer} key={currentQuestion}></QuizCard>
+            }
+            <span>{`${currentQuestion + 1} of ${numberOfQuestions}`}</span>
         </main>
     );
 };

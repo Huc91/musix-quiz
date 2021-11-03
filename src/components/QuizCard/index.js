@@ -12,6 +12,10 @@ export const QuizCard = ({ question, checkAnswer }) => {
 
     const [showResults, setShowResults] = useState(false);
 
+    const [questionText, setQuestionText] = useState(null);
+
+     const [selectedAnswer, setSelectedAnswer] = useState(null);
+
     const getRandomIntInRange = (min, max) => {
         return Math.floor(Math.random() * (max - min) + min);
     }
@@ -59,7 +63,9 @@ export const QuizCard = ({ question, checkAnswer }) => {
                 ${lines[lineIndex]}
                 ${lines[lineIndex + 1]}
             `
-            console.log(quote);
+
+            setQuestionText(quote);
+
             
         } catch (err) {
             console.log(err);
@@ -68,11 +74,15 @@ export const QuizCard = ({ question, checkAnswer }) => {
         }
     }
     
-    const handleClick = (index) => {
-        // checkAnswer(index);
+    const handleAnswer = (index) => {
+        checkAnswer(index);
         //handle the UI
+        setSelectedAnswer(index);
         setShowResults(true);
- 
+    }
+
+    const onTimeIsUp = () => {
+        handleAnswer(null);
     }
     
     useEffect(() => {
@@ -83,15 +93,22 @@ export const QuizCard = ({ question, checkAnswer }) => {
         <div className={styles.container}>
             {isLoading
                 ? <span>loading...</span>
-                : <QuizTimer startTime={60} />
+                : !showResults && <QuizTimer startTime={4} onTimeIsUp={onTimeIsUp}/>
             }
             {!isLoading &&
                 <React.Fragment>
                     <h3>
-                        This is the question
+                        { questionText }
                     </h3>
                 {question.selectedArtists.map( (artist, index) => {
-                    return <QuizButton onClick={ () => handleClick(index)} key={index} isTheCorrectOne={index === question.correctAnswer} showIfIsCorrect={showResults} artist={artist}></QuizButton>
+                    return <QuizButton
+                        onClick={() => handleAnswer(index)}
+                        key={index}
+                        isSelected={ index === selectedAnswer }
+                        isTheCorrectOne={index === question.correctAnswer}
+                        showIfIsCorrect={showResults}
+                        artist={artist}>
+                    </QuizButton>
                     })}
                 </React.Fragment>
             }
