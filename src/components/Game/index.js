@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom';
+import useLocalStorage from "use-local-storage";
 
 // Components
 import { QuizCard } from '../QuizCard';
+import { MainButton } from '../MainButton';
 
 export const Game = () => {
 
@@ -60,17 +63,28 @@ export const Game = () => {
 
     const [isGameEnd, setGameEnd] = useState(false);
     const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [score, setScore] = useState(0);
+
+    const [userHighScore, setUserHighScore] = useLocalStorage("user_high_score", 0);
 
     const checkAnswer = (index) => {
         const answer = questions[currentQuestion].correctAnswer
         if (index === answer) {
             console.log(currentQuestion < numberOfQuestions);
             if (currentQuestion < numberOfQuestions - 1) {
-                setTimeout(() => { setCurrentQuestion(currentQuestion + 1) }, 1000);
+                setScore(score + 5);
+                setTimeout(() => { setCurrentQuestion(currentQuestion + 1) }, 5000);
             } else {
+                //The user won the game
+                //all correct answers bonus
+                setScore(score + 10);
+                if (score > userHighScore) {
+                    setUserHighScore(score);
+                }
                 setTimeout(() => { setGameEnd(true); }, 1000);
             }
         } else {
+            //The user lost
            setTimeout(() => { setGameEnd(true); }, 1000);
         }
     };
@@ -83,8 +97,20 @@ export const Game = () => {
     }
     return (
         <main>
+            <span>{score}</span>
             {isGameEnd ?
-                <span>{ hasWin() ? 'You won' : 'You lost' }</span>
+                <div>
+                    <span>{hasWin() ? 'You won' : 'Game over'}</span>
+                    <span>{score} points</span>
+                    {score > userHighScore && <span>New High Score!</span> }
+                    <Link to="/results">
+                        <MainButton cta="RESULTS" />
+                    </Link>
+                    <Link to="/">
+                        <MainButton cta="PLAY AGAIN" />
+                    </Link>
+                    <span>Play again</span>
+                </div>
                 :
                 <QuizCard question={questions[currentQuestion]} checkAnswer={checkAnswer} key={currentQuestion}></QuizCard>
             }

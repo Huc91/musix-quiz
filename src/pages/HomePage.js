@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Page from "./Page";
 
@@ -14,7 +15,9 @@ const HomePage = () => {
                 the quiz game 
                 for lyrics enthusiasts 
             </p>
-            <MainButton cta="START" />
+            <Link to="/quiz">
+                <MainButton cta="START" />
+            </Link>
         </Page>
     );
 };

@@ -93,7 +93,7 @@ export const QuizCard = ({ question, checkAnswer }) => {
         <div className={styles.container}>
             {isLoading
                 ? <span>loading...</span>
-                : !showResults && <QuizTimer startTime={4} onTimeIsUp={onTimeIsUp}/>
+                : !showResults && <QuizTimer startTime={60} onTimeIsUp={onTimeIsUp}/>
             }
             {!isLoading &&
                 <React.Fragment>
