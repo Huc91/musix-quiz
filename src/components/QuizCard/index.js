@@ -6,7 +6,7 @@ import { QuizButton } from '../QuizButton';
 //style
 import * as styles from './style.module.css';
 
-export const QuizCard = ({ question, checkAnswer }) => {
+export const QuizCard = ({ question, checkAnswer, timeToAnswer }) => {
 
     const [isLoading, setLoading] = useState(false);
 
@@ -93,7 +93,7 @@ export const QuizCard = ({ question, checkAnswer }) => {
         <div className={styles.container}>
             {isLoading
                 ? <span>loading...</span>
-                : !showResults && <QuizTimer startTime={60} onTimeIsUp={onTimeIsUp}/>
+                : !showResults && <QuizTimer startTime={timeToAnswer} onTimeIsUp={onTimeIsUp}/>
             }
             {!isLoading &&
                 <React.Fragment>

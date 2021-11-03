@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import useLocalStorage from "use-local-storage";
 
 import Page from "./Page";
 
@@ -8,6 +9,18 @@ import { MainButton } from '../components/MainButton';
 
 const HomePage = () => {
 
+    const [playerName] = useLocalStorage("player", '');
+    
+    let history = useHistory();
+
+    const startGame = () => {
+        if (!playerName) {
+            history.push("/set-name")
+        } else {
+            history.push("/quiz")
+        }
+    }
+
     return (
         <Page>
             <h1>WHO SINGS</h1>
@@ -15,9 +28,7 @@ const HomePage = () => {
                 the quiz game 
                 for lyrics enthusiasts 
             </p>
-            <Link to="/quiz">
-                <MainButton cta="START" />
-            </Link>
+            <MainButton cta="START" onClick={() => startGame()}/>
         </Page>
     );
 };
