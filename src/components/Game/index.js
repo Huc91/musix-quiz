@@ -15,6 +15,7 @@ export const Game = ({numberOfQuestions, questions, timeToAnswer, delay}) => {
     const [playerName] = useLocalStorage("player", '');
     const [userHighScore, setUserHighScore] = useLocalStorage(`${playerName}_max_score`, 0);
     const [userSavedScores, setUserSavedScores] = useLocalStorage(`${playerName}_high_score`, null);
+    const [allUsersHighScores, setAllUsersHighScores] = useLocalStorage('all_users_high_scores', null);
 
     const saveScore = (score) => {
         const allUserScores = userSavedScores ? JSON.parse(userSavedScores) : [];
@@ -23,9 +24,29 @@ export const Game = ({numberOfQuestions, questions, timeToAnswer, delay}) => {
         setUserSavedScores(JSON.stringify(allUserScores))
     };
 
+    const saveHighScore = (score) => {
+        if (score < userHighScore) {
+            return;
+        }
+        setUserHighScore(score);
+        const allUsersHighScoresArr = allUsersHighScores ? JSON.parse(allUsersHighScores) : [];
+        const userDataIndex = allUsersHighScoresArr.findIndex(scores => scores.playerName === playerName);
+        const dataToSave = {
+            playerName,
+            score,
+        }
+        if (userDataIndex === -1) {
+            allUsersHighScoresArr.push(dataToSave)
+        } else {
+            allUsersHighScoresArr[userDataIndex] = dataToSave;
+        }
+        setAllUsersHighScores(JSON.stringify(allUsersHighScoresArr))
+    };
+
     const handleEndOfTheGame = () => {
         setTimeout(() => { setGameEnd(true); }, delay);
         saveScore(score);
+        saveHighScore(score);
     }
  
 
@@ -39,9 +60,6 @@ export const Game = ({numberOfQuestions, questions, timeToAnswer, delay}) => {
                 //The user won the game
                 //all correct answers bonus
                 setScore(score + 10);
-                if (score > userHighScore) {
-                    setUserHighScore(score);
-                }
                 handleEndOfTheGame();
             }
         } else {
