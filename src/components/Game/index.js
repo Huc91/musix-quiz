@@ -20,7 +20,6 @@ export const Game = ({numberOfQuestions, questions, timeToAnswer, delay}) => {
     const saveScore = (score) => {
         const allUserScores = userSavedScores ? JSON.parse(userSavedScores) : [];
         allUserScores.push(score);
-        console.log(allUserScores);
         setUserSavedScores(JSON.stringify(allUserScores))
     };
 

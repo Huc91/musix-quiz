@@ -20,8 +20,20 @@ export const QuizCard = ({ question, checkAnswer, timeToAnswer }) => {
         return Math.floor(Math.random() * (max - min) + min);
     }
 
+    
+    const handleAnswer = (index) => {
+        checkAnswer(index);
+        //handle the UI
+        setSelectedAnswer(index);
+        setShowResults(true);
+    }
 
-    const CORSProxy = "https://cors-anywhere.herokuapp.com/";
+    const onTimeIsUp = () => {
+        handleAnswer(null);
+    }
+    
+    useEffect(() => {
+            const CORSProxy = "https://cors-anywhere.herokuapp.com/";
     const apiBaseUrl = 'https://api.musixmatch.com/ws/1.1/',
         KEY = '71c04f50d5a58a93785ea8ec895155d0',
         artistToSearch = question.selectedArtists[question.correctAnswer],
@@ -33,7 +45,7 @@ export const QuizCard = ({ question, checkAnswer, timeToAnswer }) => {
               const data = await rawData.json();
               return data;
           } catch(err) {
-            console.log(err);
+              console.log(err);
             }
       }
     
@@ -73,21 +85,8 @@ export const QuizCard = ({ question, checkAnswer, timeToAnswer }) => {
             setLoading(false);
         }
     }
-    
-    const handleAnswer = (index) => {
-        checkAnswer(index);
-        //handle the UI
-        setSelectedAnswer(index);
-        setShowResults(true);
-    }
-
-    const onTimeIsUp = () => {
-        handleAnswer(null);
-    }
-    
-    useEffect(() => {
         generateTrivia();
-    }, []);
+    }, [question]);
 
     return (
         <div className={styles.container}>

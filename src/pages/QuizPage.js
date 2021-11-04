@@ -66,7 +66,7 @@ const QuizPage = () => {
                 numberOfQuestions={numberOfQuestions}
                 questions={questions}
                 delay={1000}
-                timeToAnswer={60}
+                timeToAnswer={4}
             />
         </Page>
     );

@@ -17,7 +17,7 @@ export const QuizTimer = ({ startTime, onTimeIsUp }) => {
             clearTimeout(timer);
         };
 
-    }, [counter]);
+    }, [counter, onTimeIsUp]);
 
 
     return (
