@@ -1,13 +1,15 @@
+@use '../../styles/globals';
+
 .container {
-    background-color: #FFEB3B;
+    background-color: globals.$secondary;
     font-size: 1rem;
     padding: 1rem;
     width: 100%;
     cursor: pointer;
     transition: all .2s ease-in;
     will-change: transform;
-}
 
-.container:hover {
-    background-color: #FFFF72;
+    &:hover {
+         background-color: globals.$secondary-light;
+    }
 }

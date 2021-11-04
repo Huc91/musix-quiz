@@ -1,5 +1,5 @@
 //style
-import * as styles from './style.module.css';
+import * as styles from './style.module.scss';
 
 export const MainButton = ({cta, onClick}) => {
 
