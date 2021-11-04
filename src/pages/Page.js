@@ -1,4 +1,7 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
+
+//style
+import * as styles from './style.module.scss';
 
 const Page = props => {
     useEffect(() => {
@@ -6,7 +9,7 @@ const Page = props => {
     }, []);
     
     return (
-        <main>
+        <main className={styles.container}>
             {props.children}
         </main>
     );

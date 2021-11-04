@@ -6,10 +6,25 @@
     padding: 1rem;
     width: 100%;
     cursor: pointer;
+    border-radius: 4rem;
+    border: none;
     transition: all .2s ease-in;
     will-change: transform;
 
     &:hover {
          background-color: globals.$secondary-light;
+    }
+
+    &--disabled {
+        background-color: #d1d1d1;
+        color: globals.$black;
+        cursor: not-allowed;
+        &:hover {
+            background-color: #b1b1b1;
+        }
+    }
+    &--on-bottom {
+        margin-top: auto;
+        margin-bottom: 2rem;
     }
 }

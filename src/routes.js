@@ -1,9 +1,9 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import HomePage from "./pages/HomePage";
-import SetNamePage from './pages/SetNamePage';
-import QuizPage from './pages/QuizPage';
-import ResultsPage from './pages/ResultsPage';
+import HomePage from "./pages/Home";
+import SetNamePage from './pages/SetName';
+import QuizPage from './pages/Quiz';
+import ResultsPage from './pages/Results';
 
 /**
  * Routes component containing routes for the whole application

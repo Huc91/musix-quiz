@@ -1,0 +1,18 @@
+@use '../../styles/globals';
+
+.container {
+    font-size: 1rem;
+    background-color: globals.$primary-dark;
+    overflow-y: auto;
+    border-radius: 2rem;
+    padding: 2rem;
+    
+    &__subtitle {
+        font-size: 2rem;
+    }
+
+    & ul {
+        list-style-type: none;
+    }
+
+}

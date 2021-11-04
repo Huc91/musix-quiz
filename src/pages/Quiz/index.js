@@ -1,7 +1,7 @@
-import Page from "./Page";
+import Page from "../Page";
 
 // Components
-import { Game } from '../components/Game';
+import { Game } from '../../components/Game';
 
 
 const QuizPage = () => {

@@ -1,7 +1,8 @@
 //style
 import React from 'react';
 import useLocalStorage from "use-local-storage";
-// import * as styles from './style.module.css';
+
+import * as styles from './style.module.scss';
 
 export const UserScores = ({ playerName }) => {
 
@@ -10,8 +11,10 @@ export const UserScores = ({ playerName }) => {
     const lastScores = allUserScores.length && allUserScores.reverse();
 
     return (
-        <div>
-            <span>All your scores</span>
+        <div className={styles.container}>
+            <span className={styles.container__subtitle}>All your scores</span>
+            <br />
+            <br/>
             {
                 lastScores
                 ?

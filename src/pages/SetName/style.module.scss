@@ -1,0 +1,27 @@
+.title {
+    font-size: 4rem;
+    padding: 0;
+    margin: 0;
+}
+
+.change-player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4rem;
+    height: 2rem;
+    max-width: 10rem;
+    padding: 1rem;
+    background-color: #FF218C;
+    border: none;
+    cursor: pointer;
+    &:hover {
+        background-color: #f16bac;
+    }
+
+}
+
+.button {
+    margin-top: auto;
+    margin-bottom: 2rem;
+}

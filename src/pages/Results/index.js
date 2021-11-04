@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useLocalStorage from "use-local-storage";
 
-import Page from "./Page";
+import Page from "../Page";
 
 // Components
-import { MainButton } from '../components/MainButton';
+import { MainButton } from '../../components/MainButton';
 
 const ResultsPage = () => {
 
