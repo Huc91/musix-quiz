@@ -25,7 +25,7 @@ export const Game = ({numberOfQuestions, questions, timeToAnswer, delay}) => {
     };
 
     const saveHighScore = (score) => {
-        if (score < userHighScore) {
+        if (score === 0 || score < userHighScore) {
             return;
         }
         setUserHighScore(score);

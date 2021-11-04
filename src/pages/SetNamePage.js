@@ -38,7 +38,6 @@ const SetNamePage = () => {
                             onChange={(e) => setName(e.target.value)}
                         />
                         <MainButton cta="SET PLAYER" onClick={() => savePlayer(name)} />
-                        <Link to="/quiz">PLAY</Link>
                     </React.Fragment>
             }
             <Link to="/quiz">PLAY</Link>
