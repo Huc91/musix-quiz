@@ -12,8 +12,8 @@ export const Game = ({numberOfQuestions, questions, timeToAnswer, delay}) => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
 
-    const [userHighScore, setUserHighScore] = useLocalStorage("user_high_score", 0);
     const [playerName] = useLocalStorage("player", '');
+    const [userHighScore, setUserHighScore] = useLocalStorage(`${playerName}_max_score`, 0);
     const [userSavedScores, setUserSavedScores] = useLocalStorage(`${playerName}_high_score`, null);
 
     const saveScore = (score) => {
