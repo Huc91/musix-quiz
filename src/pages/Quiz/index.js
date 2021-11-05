@@ -43,7 +43,6 @@ const QuizPage = () => {
 
   // this have more perfomances with the "double pointers", I'm avoiding a nested for loop
   const pickArtists = (numberOfQuestions, numberOfArtists) => {
-    console.log('hello');
     if (numberOfArtists > artists.length || !artists.length) {
       return null;
     }
