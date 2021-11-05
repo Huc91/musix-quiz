@@ -92,6 +92,7 @@ export const QuizCard = ({ question, checkAnswer, timeToAnswer }) => {
         }
     }
         generateTrivia();
+    /*eslint-disable*/
     }, [question]);
 
     return (

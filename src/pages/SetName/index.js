@@ -47,7 +47,7 @@ const SetNamePage = () => {
                         <label className={styles.title}>Set your name to play</label>
                         <input
                             id="name"
-                            maxLength="18"
+                            maxLength="10"
                             className={styles['text-input']}
                             type="text"
                             placeholder="Insert your name"
