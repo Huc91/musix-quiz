@@ -21,6 +21,17 @@ Must have features:
 
 [Figma link to the UI I designed](https://www.figma.com/fileumQ0ujQdIuU5DxZurJK7vY/Untitled?node-id=0%3A1)
 
+## Add the API key
+Add your API key to use the Musixmatch API.
+Generate the key [here](https://developer.musixmatch.com/).
+
+create `.env` file in the root of the project
+```
+#.env file
+REACT_APP_API_KEY="<api key>"
+```
+
+
 ## Commands
 
 ### `yarn start`

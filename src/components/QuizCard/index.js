@@ -30,17 +30,15 @@ export const QuizCard = ({ question, checkAnswer, timeToAnswer }) => {
     handleAnswer(null);
   };
 
-  useEffect(() => {
-    // const CORSProxy = "https://cors-anywhere.herokuapp.com/";
+    useEffect(() => {
     const CORSProxy = 'https://musix-cors.herokuapp.com/';
-    const apiBaseUrl = 'https://api.musixmatch.com/ws/1.1/',
-      KEY = '71c04f50d5a58a93785ea8ec895155d0',
-      artistToSearch = question.selectedArtists[question.correctAnswer],
-      search = `track.search?q_artist=${artistToSearch}&page_size=30&page=1&s_artist_rating=desc&s_track_rating=desc&f_has_lyrics=1&apikey=${KEY}`;
+    const apiBaseUrl = 'https://api.musixmatch.com/ws/1.1/';
 
     const getTracks = async () => {
       try {
-        const rawData = await fetch(CORSProxy + apiBaseUrl + search);
+          const artistToSearch = question.selectedArtists[question.correctAnswer];
+          const search = `track.search?q_artist=${artistToSearch}&page_size=30&page=1&s_artist_rating=desc&s_track_rating=desc&f_has_lyrics=1&apikey=${process.env.REACT_APP_API_KEY}`;
+          const rawData = await fetch(`${CORSProxy}${apiBaseUrl}${search}`);
         const data = await rawData.json();
         return data;
       } catch (err) {
@@ -51,7 +49,7 @@ export const QuizCard = ({ question, checkAnswer, timeToAnswer }) => {
     const getLyrics = async (trackId) => {
       try {
         const rawData = await fetch(
-          CORSProxy + apiBaseUrl + `track.lyrics.get?track_id=${trackId}&apikey=${KEY}`
+           `${CORSProxy}${apiBaseUrl}track.lyrics.get?track_id=${trackId}&apikey=${process.env.REACT_APP_API_KEY}`
         );
         const data = await rawData.json();
         return data;
