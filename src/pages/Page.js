@@ -4,11 +4,11 @@ import React, { useEffect } from 'react';
 import * as styles from './style.module.scss';
 
 const Page = (props) => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
-  return <main className={styles.container}>{props.children}</main>;
+	return <main className={styles.container}>{props.children}</main>;
 };
 
 export default Page;
