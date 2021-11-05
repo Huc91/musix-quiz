@@ -40,21 +40,22 @@ const SetNamePage = () => {
                         <span className={styles.title}>Hello, {playerName}</span>
                         <button className={styles['change-player']} onClick={() => savePlayer('')} >Change player</button>
                         <UserScores playerName={playerName}></UserScores>
-                       
+                        <MainButton onBottom={true} cta="PLAY" disabled={!playerName} onClick={() => play()} />
                     </React.Fragment>
                     :
                     <React.Fragment>
                         <label className={styles.title}>Set your name to play</label>
                         <input
                             id="name"
+                            className={styles['text-input']}
                             type="text"
                             placeholder="Insert your name"
                             onChange={(e) => setName(e.target.value)}
+                            onKeyDown={ (e) => e.key === 'Enter' && savePlayer(name)}
                         />
-                        <button className={styles['change-player']} onClick={() => savePlayer(name)} >Save player name</button>
+                         <MainButton onBottom={true} cta="SET" onClick={() => savePlayer(name)} />
                     </React.Fragment>
             }
-            <MainButton onBottom={true} cta="PLAY" disabled={!playerName} onClick={() => play()} />
 
 
         </Page>

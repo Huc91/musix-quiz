@@ -13,7 +13,7 @@ export const UserScores = ({ playerName }) => {
     return (
         <div className={styles.container}>
             <span className={styles.container__subtitle}>All your scores</span>
-            <br />
+            <hr />
             <br/>
             {
                 lastScores

@@ -2,10 +2,12 @@
 
 .container {
     font-size: 1rem;
-    background-color: globals.$primary-dark;
+    background-color: globals.$white;
+    color: globals.$black;
     overflow-y: auto;
     border-radius: 2rem;
     padding: 2rem;
+    margin-top: 4rem;
     
     &__subtitle {
         font-size: 2rem;
