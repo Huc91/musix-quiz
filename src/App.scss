@@ -29,4 +29,7 @@ body {
   justify-content: flex-start;
   align-items: center;
   padding: 3rem;
+  @media screen and (min-width: 1024px) {
+    width: 66%;
+  }
 }

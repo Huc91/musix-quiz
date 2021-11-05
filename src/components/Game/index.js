@@ -79,16 +79,17 @@ export const Game = ({numberOfQuestions, questions, timeToAnswer, delay}) => {
         <div className={styles.container}>
             {isGameEnd ?
                 <div className={styles['container__game-end']}>
-                    <span>{hasWin() ? 'You won' : 'Game over'}</span>
+                    <h3>{hasWin() ? 'You won' : 'Game over'}</h3>
                     <span>{score} points</span>
-                    {score > userHighScore && <span>New High Score!</span> }
-                    <Link to="/results">
-                        <MainButton cta="RESULTS" />
-                    </Link>
-                    <Link to="/">
-                        <MainButton cta="PLAY AGAIN" />
-                    </Link>
-                    <span>Play again</span>
+                    {score > userHighScore && <span>New High Score!</span>}
+                    <div className={styles['container__game-end__actions']}>
+                        <Link to="/results">
+                            <MainButton cta="RESULTS" />
+                        </Link>
+                        <Link to="/">
+                            <MainButton cta="PLAY AGAIN" />
+                        </Link>
+                    </div>
                 </div>
                 :
                 <React.Fragment>
@@ -97,9 +98,13 @@ export const Game = ({numberOfQuestions, questions, timeToAnswer, delay}) => {
                         <span className={styles['container__status-bar__score']}>{score}</span>
                     </div>
                     <QuizCard question={questions[currentQuestion]} checkAnswer={checkAnswer} key={currentQuestion} timeToAnswer={timeToAnswer}></QuizCard>
+                    <span className={styles['container__counter']}>
+                        <strong>{currentQuestion + 1} </strong>
+                        of
+                        <strong> {numberOfQuestions}</strong>
+                    </span>
                 </React.Fragment>
             }
-            <span><strong>{currentQuestion + 1}</strong> of <strong>{numberOfQuestions}</strong></span>
         </div>
     );
 };
