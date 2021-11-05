@@ -13,10 +13,9 @@ export const QuizButton = ({ artist, isTheCorrectOne, showIfIsCorrect, onClick, 
                     {artist}
                 </button>
                 :
-                <button className={`${styles.container} ${styles[status]} ${isSelected && styles.selected}`}>
+                <button className={`${styles.container} ${(isSelected || isTheCorrectOne) && styles[status]} ${isSelected && styles.selected}`}>
                     {artist}
                 </button>
-
             }
         </React.Fragment>
     );
