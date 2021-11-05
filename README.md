@@ -1,4 +1,4 @@
-# :notes: Who sing 
+# :notes: Who sings
 
 Musixmatch Front-end test
 
