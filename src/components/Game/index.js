@@ -79,7 +79,7 @@ export const Game = ({numberOfQuestions, questions, timeToAnswer, delay}) => {
         <div className={styles.container}>
             {isGameEnd ?
                 <div className={styles['container__game-end']}>
-                    <h3>{hasWin() ? 'You won' : 'Game over'}</h3>
+                    <h3>{hasWin() ? 'YOU WON' : 'GAME OVER'}</h3>
                     <span>{score} points</span>
                     {score > userHighScore && <span>New High Score!</span>}
                     <div className={styles['container__game-end__actions']}>

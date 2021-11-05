@@ -71,14 +71,18 @@ export const QuizCard = ({ question, checkAnswer, timeToAnswer }) => {
             const { message: { body: { lyrics: { lyrics_body } } } } = await getLyrics(track_id);
 
             const lines = lyrics_body.split('\n');
-            console.log(lines);
-            const lineIndex = getRandomIntInRange(0, lines.length - 4);
-            const quote = `
-                ${lines[lineIndex]}
-                ${lines[lineIndex + 1]}
+            const clearLines = lines.filter(line => line !== "..." && line !== '...' && line !== '' && line !== "");
+            const lineIndex = getRandomIntInRange(0, clearLines.length - 2);
+            if (clearLines.length) {
+                const quote = `
+                ${clearLines[lineIndex]}
+                ${lineIndex + 1 < clearLines.length - 2 && clearLines[lineIndex + 1]}
             `
-
-            setQuestionText(quote);
+                quote && setQuestionText(quote);
+            } else {
+                setQuestionText('SYSTEM ERROR: you got free points')
+                handleAnswer(question.correctAnswer);
+            }
 
             
         } catch (err) {
