@@ -33,7 +33,9 @@ export const QuizCard = ({ question, checkAnswer, timeToAnswer }) => {
     }
     
     useEffect(() => {
-            const CORSProxy = "https://cors-anywhere.herokuapp.com/";
+
+    // const CORSProxy = "https://cors-anywhere.herokuapp.com/";
+    const CORSProxy = "https://musix-cors.herokuapp.com/";
     const apiBaseUrl = 'https://api.musixmatch.com/ws/1.1/',
         KEY = '71c04f50d5a58a93785ea8ec895155d0',
         artistToSearch = question.selectedArtists[question.correctAnswer],
