@@ -2,14 +2,18 @@
 
 .container {
     background-color: globals.$secondary;
-    font-size: 1rem;
+    height: 5rem;
+    font-size: 2rem;
     padding: 1rem;
-    width: 100%;
     cursor: pointer;
     border-radius: 4rem;
     border: none;
     transition: all .2s ease-in;
     will-change: transform;
+    @media screen and (min-width: 600px) { 
+        width: 18rem;
+        margin: 0 auto;
+    }
 
     &:hover {
          background-color: globals.$secondary-light;
