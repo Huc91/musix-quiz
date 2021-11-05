@@ -1,7 +1,7 @@
 import React,  { useState, useEffect } from 'react';
 
 //style
-import * as styles from './style.module.css';
+import * as styles from './style.module.scss';
 
 export const QuizTimer = ({ startTime, onTimeIsUp }) => {
 
@@ -21,7 +21,7 @@ export const QuizTimer = ({ startTime, onTimeIsUp }) => {
 
 
     return (
-        <span className={`${styles.container} ${counter < 6 ? 'danger' : ''}`}>
+        <span className={`${styles.container} ${counter < 6 && styles['container--danger']}`}>
             { counter }s
         </span>
     );

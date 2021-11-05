@@ -1,0 +1,20 @@
+@use '../../styles/globals';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    &__status-bar {
+        width: 100%;
+         display: grid;
+         grid-template-columns: 1fr 1fr 1fr;
+         align-items: center;
+         &__score {
+             text-align: center;
+             font-size: 2rem;
+             color: globals.$secondary;
+         }
+    }
+}

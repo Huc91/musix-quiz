@@ -4,7 +4,7 @@ import { QuizTimer } from '../QuizTimer';
 import { QuizButton } from '../QuizButton';
 
 //style
-import * as styles from './style.module.css';
+import * as styles from './style.module.scss';
 
 export const QuizCard = ({ question, checkAnswer, timeToAnswer }) => {
 
@@ -91,14 +91,22 @@ export const QuizCard = ({ question, checkAnswer, timeToAnswer }) => {
     return (
         <div className={styles.container}>
             {isLoading
-                ? <span>loading...</span>
+                ? <i>loading...</i>
                 : !showResults && <QuizTimer startTime={timeToAnswer} onTimeIsUp={onTimeIsUp}/>
             }
             {!isLoading &&
                 <React.Fragment>
-                    <h3>
-                        { questionText }
-                    </h3>
+                {
+                    questionText
+                    ?
+                    <strong>
+                        {questionText}
+                    </strong>
+                    :
+                    <p>
+                        <strong>ERROR: There is a problem with the API</strong> check <a href="https://cors-anywhere.herokuapp.com/corsdemo">CORS proxy</a> or if you're making too many requests
+                    </p>
+                }
                 {question.selectedArtists.map( (artist, index) => {
                     return <QuizButton
                         onClick={() => handleAnswer(index)}

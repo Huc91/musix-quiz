@@ -6,6 +6,8 @@ import useLocalStorage from "use-local-storage";
 import { QuizCard } from '../QuizCard';
 import { MainButton } from '../MainButton';
 
+import * as styles from './style.module.scss';
+
 export const Game = ({numberOfQuestions, questions, timeToAnswer, delay}) => {
 
     const [isGameEnd, setGameEnd] = useState(false);
@@ -74,10 +76,9 @@ export const Game = ({numberOfQuestions, questions, timeToAnswer, delay}) => {
         return true;
     }
     return (
-        <main>
-            <span>{score}</span>
+        <div className={styles.container}>
             {isGameEnd ?
-                <div>
+                <div className={styles['container__game-end']}>
                     <span>{hasWin() ? 'You won' : 'Game over'}</span>
                     <span>{score} points</span>
                     {score > userHighScore && <span>New High Score!</span> }
@@ -90,9 +91,15 @@ export const Game = ({numberOfQuestions, questions, timeToAnswer, delay}) => {
                     <span>Play again</span>
                 </div>
                 :
-                <QuizCard question={questions[currentQuestion]} checkAnswer={checkAnswer} key={currentQuestion} timeToAnswer={timeToAnswer}></QuizCard>
+                <React.Fragment>
+                    <div className={styles['container__status-bar']}>
+                        <span>{playerName}</span>
+                        <span className={styles['container__status-bar__score']}>{score}</span>
+                    </div>
+                    <QuizCard question={questions[currentQuestion]} checkAnswer={checkAnswer} key={currentQuestion} timeToAnswer={timeToAnswer}></QuizCard>
+                </React.Fragment>
             }
-            <span>{`${currentQuestion + 1} of ${numberOfQuestions}`}</span>
-        </main>
+            <span><strong>{currentQuestion + 1}</strong> of <strong>{numberOfQuestions}</strong></span>
+        </div>
     );
 };
