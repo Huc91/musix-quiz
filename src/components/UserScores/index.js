@@ -14,15 +14,17 @@ export const UserScores = ({ playerName }) => {
         <div className={styles.container}>
             <span className={styles.container__title}>All your scores</span>
             <hr />
-            {
-                lastScores
-                ?
-                    <ul>
-                        {lastScores.map((score, i) => <li key={i}>{score}</li>)}
-                    </ul>
-                :
-                    <span>You haven't played yet!</span>
-            }
+            <div className={styles.container__scrollable}>
+                {
+                    lastScores
+                    ?
+                        <ul>
+                            {lastScores.map((score, i) => <li key={i}>{score}</li>)}
+                        </ul>
+                    :
+                        <span>You haven't played yet!</span>
+                }
+            </div>
         </div>
 
     );

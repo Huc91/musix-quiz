@@ -14,11 +14,17 @@
         font-size: 1rem;
     }
 
+    &__scrollable {
+        overflow-y: auto;
+        max-height: 15vh;
+    }
+
     & ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
         color: globals.$primary-dark
     }
+
 
 }

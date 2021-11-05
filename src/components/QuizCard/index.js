@@ -100,14 +100,10 @@ export const QuizCard = ({ question, checkAnswer, timeToAnswer }) => {
                 <React.Fragment>
                 {
                     questionText
-                    ?
+                    &&
                     <strong>
                         {questionText}
                     </strong>
-                    :
-                    <p>
-                        <strong>ERROR: There is a problem with the API</strong> check <a href="https://cors-anywhere.herokuapp.com/corsdemo">CORS proxy</a> or if you're making too many requests
-                    </p>
                 }
                 {question.selectedArtists.map( (artist, index) => {
                     return <QuizButton
