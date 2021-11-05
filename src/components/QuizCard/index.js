@@ -7,122 +7,129 @@ import { QuizButton } from '../QuizButton';
 import * as styles from './style.module.scss';
 
 export const QuizCard = ({ question, checkAnswer, timeToAnswer }) => {
+  const [isLoading, setLoading] = useState(false);
 
-    const [isLoading, setLoading] = useState(false);
+  const [showResults, setShowResults] = useState(false);
 
-    const [showResults, setShowResults] = useState(false);
+  const [questionText, setQuestionText] = useState(null);
 
-    const [questionText, setQuestionText] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
 
-     const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const getRandomIntInRange = (min, max) => {
+    return Math.floor(Math.random() * (max - min) + min);
+  };
 
-    const getRandomIntInRange = (min, max) => {
-        return Math.floor(Math.random() * (max - min) + min);
-    }
+  const handleAnswer = (index) => {
+    checkAnswer(index);
+    //handle the UI
+    setSelectedAnswer(index);
+    setShowResults(true);
+  };
 
-    
-    const handleAnswer = (index) => {
-        checkAnswer(index);
-        //handle the UI
-        setSelectedAnswer(index);
-        setShowResults(true);
-    }
+  const onTimeIsUp = () => {
+    handleAnswer(null);
+  };
 
-    const onTimeIsUp = () => {
-        handleAnswer(null);
-    }
-    
-    useEffect(() => {
-
+  useEffect(() => {
     // const CORSProxy = "https://cors-anywhere.herokuapp.com/";
-    const CORSProxy = "https://musix-cors.herokuapp.com/";
+    const CORSProxy = 'https://musix-cors.herokuapp.com/';
     const apiBaseUrl = 'https://api.musixmatch.com/ws/1.1/',
-        KEY = '71c04f50d5a58a93785ea8ec895155d0',
-        artistToSearch = question.selectedArtists[question.correctAnswer],
-        search = `track.search?q_artist=${artistToSearch}&page_size=30&page=1&s_artist_rating=desc&s_track_rating=desc&f_has_lyrics=1&apikey=${KEY}`
+      KEY = '71c04f50d5a58a93785ea8ec895155d0',
+      artistToSearch = question.selectedArtists[question.correctAnswer],
+      search = `track.search?q_artist=${artistToSearch}&page_size=30&page=1&s_artist_rating=desc&s_track_rating=desc&f_has_lyrics=1&apikey=${KEY}`;
 
-      const getTracks = async () => {
-          try {
-              const rawData = await fetch( CORSProxy+apiBaseUrl+search);
-              const data = await rawData.json();
-              return data;
-          } catch(err) {
-              console.log(err);
-            }
-      }
-    
-    const getLyrics = async (trackId) => {
-    try {
-        const rawData = await fetch( CORSProxy+apiBaseUrl+`track.lyrics.get?track_id=${trackId}&apikey=${KEY}`);
+    const getTracks = async () => {
+      try {
+        const rawData = await fetch(CORSProxy + apiBaseUrl + search);
         const data = await rawData.json();
         return data;
-    } catch(err) {
-    console.log(err);
-    }
-}
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    const getLyrics = async (trackId) => {
+      try {
+        const rawData = await fetch(
+          CORSProxy + apiBaseUrl + `track.lyrics.get?track_id=${trackId}&apikey=${KEY}`
+        );
+        const data = await rawData.json();
+        return data;
+      } catch (err) {
+        console.log(err);
+      }
+    };
     const generateTrivia = async () => {
-        try {
-            setLoading(true);
-            const { message: { body: { track_list } } } = await getTracks();
-            
-            const { track: { track_id } } = track_list[getRandomIntInRange(0, track_list.length)];
+      try {
+        setLoading(true);
+        const {
+          message: {
+            body: { track_list },
+          },
+        } = await getTracks();
 
-            console.log(track_id);
-            const { message: { body: { lyrics: { lyrics_body } } } } = await getLyrics(track_id);
+        const {
+          track: { track_id },
+        } = track_list[getRandomIntInRange(0, track_list.length)];
 
-            const lines = lyrics_body.split('\n');
-            const clearLines = lines.filter(line => line !== "..." && line !== '...' && line !== '' && line !== "");
-            const lineIndex = getRandomIntInRange(0, clearLines.length - 2);
-            if (clearLines.length) {
-                const quote = `
+        console.log(track_id);
+        const {
+          message: {
+            body: {
+              lyrics: { lyrics_body },
+            },
+          },
+        } = await getLyrics(track_id);
+
+        const lines = lyrics_body.split('\n');
+        const clearLines = lines.filter(
+          (line) => line !== '...' && line !== '...' && line !== '' && line !== ''
+        );
+        const lineIndex = getRandomIntInRange(0, clearLines.length - 2);
+        if (clearLines.length) {
+          const quote = `
                 ${clearLines[lineIndex]}
                 ${lineIndex + 1 < clearLines.length - 2 && clearLines[lineIndex + 1]}
-            `
-                quote && setQuestionText(quote);
-            } else {
-                setQuestionText('SYSTEM ERROR: you got free points')
-                handleAnswer(question.correctAnswer);
-            }
-
-            
-        } catch (err) {
-            console.log(err);
-        } finally {
-            setLoading(false);
+            `;
+          quote && setQuestionText(quote);
+        } else {
+          setQuestionText('SYSTEM ERROR: you got free points');
+          handleAnswer(question.correctAnswer);
         }
-    }
-        generateTrivia();
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    generateTrivia();
     /*eslint-disable*/
-    }, [question]);
+  }, [question]);
 
-    return (
-        <div className={styles.container}>
-            {isLoading
-                ? <i>loading...</i>
-                : !showResults && <QuizTimer startTime={timeToAnswer} onTimeIsUp={onTimeIsUp}/>
-            }
-            {!isLoading &&
-                <React.Fragment>
-                {
-                    questionText
-                    &&
-                    <strong>
-                        {questionText}
-                    </strong>
-                }
-                {question.selectedArtists.map( (artist, index) => {
-                    return <QuizButton
-                        onClick={() => handleAnswer(index)}
-                        key={index}
-                        isSelected={ index === selectedAnswer }
-                        isTheCorrectOne={index === question.correctAnswer}
-                        showIfIsCorrect={showResults}
-                        artist={artist}>
-                    </QuizButton>
-                    })}
-                </React.Fragment>
-            }
-            
-        </div>
-    );
+  return (
+    <div className={styles.container}>
+      {isLoading ? (
+        <i>loading...</i>
+      ) : (
+        !showResults && <QuizTimer startTime={timeToAnswer} onTimeIsUp={onTimeIsUp} />
+      )}
+      {!isLoading && (
+        <React.Fragment>
+          {questionText && <strong>{questionText}</strong>}
+          {question.selectedArtists.map((artist, index) => {
+            return (
+              <QuizButton
+                onClick={() => handleAnswer(index)}
+                key={index}
+                isSelected={index === selectedAnswer}
+                isTheCorrectOne={index === question.correctAnswer}
+                showIfIsCorrect={showResults}
+                artist={artist}
+              ></QuizButton>
+            );
+          })}
+        </React.Fragment>
+      )}
+    </div>
+  );
 };

@@ -1,31 +1,29 @@
 @use '../../styles/globals';
 
-
 .container {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    background-color: globals.$white;
-    color: globals.$black;
-    font-size: 1rem;
-    padding: 2rem;
-    margin-top: 1rem;
-    border-radius: 2rem;
-    position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: globals.$white;
+  color: globals.$black;
+  font-size: 1rem;
+  padding: 2rem;
+  margin-top: 1rem;
+  border-radius: 2rem;
+  position: relative;
 
-    strong {
-        text-align: center;
-        padding-top: 4rem;
-        padding-bottom: 4rem;
-    }
-    span {
-        position: absolute;
-        top: 2rem;
-    }
-    p {
-        color: red;
-    }
-
+  strong {
+    text-align: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  span {
+    position: absolute;
+    top: 2rem;
+  }
+  p {
+    color: red;
+  }
 }

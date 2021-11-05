@@ -1,23 +1,23 @@
 .title {
-    font-size: 4rem;
-    padding: 0;
-    margin-bottom: 2rem;
-    margin-top: 0;
+  font-size: 4rem;
+  padding: 0;
+  margin-bottom: 2rem;
+  margin-top: 0;
 }
 
 .subtitle {
-    font-size: 2rem;
-    padding: 0;
-    margin-top: 0;
-    margin-bottom: 2rem;
+  font-size: 2rem;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 2rem;
 }
 .scrollable {
-    overflow-y: auto;
-    max-height: 25vh;
-    &__scores {
-        font-size: 2rem;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-    }
+  overflow-y: auto;
+  max-height: 25vh;
+  &__scores {
+    font-size: 2rem;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
 }

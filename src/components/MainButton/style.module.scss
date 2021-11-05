@@ -1,34 +1,34 @@
 @use '../../styles/globals';
 
 .container {
-    background-color: globals.$secondary;
-    height: 5rem;
-    font-size: 2rem;
-    padding: 1rem;
-    cursor: pointer;
-    border-radius: 4rem;
-    border: none;
-    transition: all .2s ease-in;
-    will-change: transform;
-    @media screen and (min-width: 600px) { 
-        width: 18rem;
-        margin: 0 auto;
-    }
+  background-color: globals.$secondary;
+  height: 5rem;
+  font-size: 2rem;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 4rem;
+  border: none;
+  transition: all 0.2s ease-in;
+  will-change: transform;
+  @media screen and (min-width: 600px) {
+    width: 18rem;
+    margin: 0 auto;
+  }
 
+  &:hover {
+    background-color: globals.$secondary-light;
+  }
+
+  &--disabled {
+    background-color: #d1d1d1;
+    color: globals.$black;
+    cursor: not-allowed;
     &:hover {
-         background-color: globals.$secondary-light;
+      background-color: #b1b1b1;
     }
-
-    &--disabled {
-        background-color: #d1d1d1;
-        color: globals.$black;
-        cursor: not-allowed;
-        &:hover {
-            background-color: #b1b1b1;
-        }
-    }
-    &--on-bottom {
-        margin-top: 6rem;
-        margin-bottom: 2rem;
-    }
+  }
+  &--on-bottom {
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+  }
 }
