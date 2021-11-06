@@ -20,7 +20,7 @@ Must have features:
 ## :pencil2: UI
 
 I designed the UI for this app on Figma.
-[Figma link to the UI I designed](https://www.figma.com/fileumQ0ujQdIuU5DxZurJK7vY/Untitled?node-id=0%3A1)
+[Figma link to the UI I designed](https://www.figma.com/file/umQ0ujQdIuU5DxZurJK7vY/whosings?node-id=0%3A1)
 
 ## :telephone_receiver: Add the API key
 
