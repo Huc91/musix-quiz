@@ -3,6 +3,9 @@ import Page from '../Page';
 // Components
 import { Game } from '../../components/Game';
 
+//utils
+import { getRandomIntInRange } from '../../utils/utils';
+
 const QuizPage = () => {
 	const numberOfQuestions = 6;
 
@@ -36,10 +39,6 @@ const QuizPage = () => {
 		'Pusha T',
 		'Vince Staples',
 	];
-
-	const getRandomIntInRange = (min, max) => {
-		return Math.floor(Math.random() * (max - min) + min);
-	};
 
 	// this have more perfomances with the "double pointers", I'm avoiding a nested for loop
 	const pickArtists = (numberOfQuestions, numberOfArtists) => {
