@@ -45,7 +45,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 Builds the app for production to the `build` folder.\
 
-## :scream: Improvements
+## :dizzy: Improvements
 
 -   I could add more genres, only rap for now.
 -   Better handling of lyrics quotes
+
+## :scream: Known issues
+
+-   The CORS proxy is deployed as an app on my free tier on Heroku. It takes a bit to "warm up" so the first API call takes a little bit more time.

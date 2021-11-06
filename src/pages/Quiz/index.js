@@ -10,7 +10,6 @@ import { getRandomIntInRange } from '../../utils/utils';
 import { artistsByGenre } from '../../data/artists';
 
 const QuizPage = () => {
-
 	//In the future could be selected
 	const genre = 'rap';
 	const artists = artistsByGenre[genre];
