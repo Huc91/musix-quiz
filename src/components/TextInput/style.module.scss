@@ -1,0 +1,28 @@
+@use '../../styles/globals';
+
+.container {
+	display: flex;
+	flex-direction: column;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	& input {
+		background-color: globals.$white;
+		font-size: 0.93rem;
+		font-weight: 500;
+		padding: 0.5rem;
+		cursor: pointer;
+		border-radius: 0.375rem;
+		border: 1px solid globals.$grey;
+		transition: all 0.2s ease-in;
+		will-change: transform;
+
+		&:hover {
+			border: 1px solid globals.$secondary;
+		}
+	}
+	& label {
+		display: block;
+		font-size: 0.875rem;
+		padding-bottom: 0.5rem;
+	}
+}

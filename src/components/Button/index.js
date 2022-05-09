@@ -1,12 +1,12 @@
 //style
 import * as styles from './style.module.scss';
 
-export const MainButton = ({ cta, onClick, disabled, onBottom }) => {
+export const Button = ({ cta, onClick, disabled }) => {
 	return (
 		<button
 			className={`${styles.container}
             ${disabled && styles['container--disabled']}
-            ${onBottom && styles['container--on-bottom']}`}
+            `}
 			onClick={() => onClick && onClick()}
 		>
 			{cta}

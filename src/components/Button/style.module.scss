@@ -1,0 +1,25 @@
+@use '../../styles/globals';
+
+.container {
+	background-color: globals.$secondary;
+	font-size: 0.875rem;
+	padding: 0.5rem;
+	cursor: pointer;
+	border-radius: 0.375rem;
+	border: none;
+	transition: all 0.2s ease-in;
+	will-change: transform;
+	&:hover {
+		background-color: globals.$secondary-light;
+	}
+
+	&--disabled {
+		background-color: globals.$grey-light;
+		color: globals.$grey;
+		cursor: not-allowed;
+		&:hover {
+			background-color: globals.$grey;
+			color: globals.$black;
+		}
+	}
+}
