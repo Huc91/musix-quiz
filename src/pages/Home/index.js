@@ -7,8 +7,6 @@ import * as styles from './style.module.scss';
 
 const HomePage = () => {
 
-	console.log(isUserLoggedin);
-
 	return (
 		<Page>
 			<h1 className={styles.hero}>WHO</h1>
