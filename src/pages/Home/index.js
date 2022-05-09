@@ -11,6 +11,7 @@ const HomePage = () => {
 		<Page>
 			<h1 className={styles.hero}>WHO</h1>
 			<h1 className={`${styles.hero} ${styles['hero--tabbed']}`}>SINGS</h1>
+			ciao
 		</Page>
 	);
 };
